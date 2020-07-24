@@ -367,7 +367,9 @@ template, [hidden] {
     .header-contacts__arrow {
       cursor: pointer;
       -webkit-transition: 0.5s;
-      transition: 0.5s; }
+      transition: 0.5s;
+      transform: rotate(0deg);
+      transition-duration: 0.4s; }
       .header-contacts__arrow img {
         margin-top: 12px;
         margin-left: 5px; }
@@ -774,7 +776,6 @@ template, [hidden] {
       position: relative;
       margin-left: auto;
       margin-right: auto;
-      opacity: 0.4;
       font-size: 18px; }
       .formula-slider__slide:before {
         position: absolute;
@@ -794,7 +795,7 @@ template, [hidden] {
           -webkit-transition: 0.4s;
           transition: 0.4s; }
           .formula-slider__slide .formula-item__icon-inner {
-            opacity: 1;
+            opacity: 0.9;
             width: 40px;
             height: 40px;
             font-size: 20px;
@@ -863,7 +864,7 @@ template, [hidden] {
     font-weight: 300;
     text-align: center;
     color: #000000;
-    z-index: 0; }
+    z-index: 1; }
     .formula-item strong {
       font-weight: 500; }
     .formula-item__descr {
@@ -6258,7 +6259,7 @@ strong {
   font-size: 30px;
   line-height: 35px;
   color: #322823;
-  z-index: 0; }
+  z-index: -1; }
   @media (max-width: 1024px) {
     .section-title {
       font-size: 26px; } }
@@ -6481,3 +6482,23 @@ strong {
 
 .slider-dots {
   display: none; }
+
+.arrow-active {
+  transform: rotate(180deg);
+  transition-duration: 0.4s;
+}
+
+.header-arrow {
+  transition-duration: 0.4s;
+}
+
+.dialog-menu-active {
+  -webkit-transform: translate3d(0px, 0, 0);
+  transform: translate3d(0px, 0, 0);
+}
+
+.formula-item-popup-bottom:before {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  z-index: -1;
+}
