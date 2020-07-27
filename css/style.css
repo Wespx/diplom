@@ -768,10 +768,18 @@ template, [hidden] {
   .formula-slider {
     min-height: 400px;
     margin-top: 102px; }
+    @media (max-width: 1024px) and (min-width: 576px) {
+      .formula-slider {
+        display: flex;
+        align-items: flex-start;
+      }
+    }
     @media (max-width: 575px) {
       .formula-slider {
         min-height: 265px;
-        margin-top: 52px; } }
+        margin-top: 65px;
+        display: flex;
+        align-items: flex-start; } }
     .formula-slider__slide {
       position: relative;
       margin-left: auto;
@@ -802,14 +810,20 @@ template, [hidden] {
             font-weight: 900; }
             @media (max-width: 1024px) {
               .formula-slider__slide .formula-item__icon-inner {
-                background: none; } }
+                background: none; }
+                .formula-slider__slide .formula-item__icon {
+                  z-index: 120; } }
           .formula-slider__slide .formula-item__icon__descr {
             font-size: 18px; }
     @media (max-width: 575px) {
       .formula-slider-wrap {
         width: 290px;
         margin-left: auto;
-        margin-right: auto; } }
+        margin-right: auto;
+        overflow: hidden;} }
+      @media (min-width: 576px) and (max-width: 1024px) {
+        .formula-slider-wrap {
+          overflow: hidden;} }
   .formula .row {
     height: 100%;
     min-height: 95px; }
@@ -1996,7 +2010,8 @@ div.wave-block:nth-child(17):after {
       margin-top: 70px; }
       @media (max-width: 575px) {
         .problems-slider-wrap {
-          margin-top: 50px; } }
+          margin-top: 50px;
+          overflow: hidden; } }
     .problems-slider__slide {
       margin-left: auto;
       margin-right: auto;
@@ -6576,13 +6591,15 @@ strong {
   transform: translate3d(0px, 0, 0);
 }
 
-.formula-item-popup-bottom:before {
+.formula-item-popup-bottom:before,
+.problems-item-popup-bottom:before {
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
   z-index: -1;
 }
 
-.formula-item-popup-top:before {
+.formula-item-popup-top:before,
+.problems-item-popup-top:before {
   -webkit-transform: rotate(0deg);
   transform: rotate(0deg);
   z-index: -1;
