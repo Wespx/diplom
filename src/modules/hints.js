@@ -45,12 +45,29 @@ const hints = () => {
         if (target.matches('.formula-item.formula-slider__slide')) {
             const icon = target.querySelector('.formula-item__icon-inner');
             const hint = target.querySelector('.formula-item-popup');
+            const bottom = icon.getBoundingClientRect().bottom;
+            const screenHeight = document.documentElement.clientHeight;
+            const distanceToBottom = screenHeight - bottom;
 
             hint.style.visibility = 'visible';
             hint.style.opacity = 1;
             icon.style.background = 'linear-gradient(90deg, #F48922 0%, #FFB015 100%)';
             icon.style.color = '#fff';
             target.style.zIndex = 10;
+
+            if (distanceToBottom < 150) {
+                hint.classList.add('formula-item-popup-top');
+                hint.style.top = '-102px';
+                const distanceBetween = icon.offsetTop - hint.offsetTop - hint.offsetHeight;
+                console.log(distanceBetween);
+
+                if (distanceBetween < 10) {
+                    hint.style.top = parseInt(hint.style.top) - 10 + distanceBetween + 'px';
+                }
+            } else {
+                hint.classList.remove('formula-item-popup-top');
+                hint.style.top = '90px';
+            }
 
             const hidehint = () => {
                 hint.style.visibility = 'hidden';
