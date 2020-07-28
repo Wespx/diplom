@@ -4846,6 +4846,27 @@ div.wave-block:nth-child(17):after {
       .popup-design-slider {
         height: 50vh;
         border-radius: 0; } }
+    @media (min-width: 575px) and (max-width: 1024px) {
+      .popup-design-slider {
+        height: 400px;
+      }
+
+      .popup-design-slider div {
+        height: 400px;
+      }
+
+      .popup-design-slider div 
+      .popup-design-slider__style-slide {
+        height: 100%;
+      }
+
+      .popup-design-slider div 
+      .popup-design-slider__style-slide img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
     @media (max-width: 575px) {
       .popup-design-slider__style-slide img {
         height: 50vh; } }
@@ -6607,4 +6628,10 @@ strong {
 
 .popup-transparency-slider__slide {
   display: none;
+}
+
+@media (min-width: 575px) and (max-width: 1024px) {
+  .popup-design-slider-wrap {
+    height: 400px;
+  }
 }

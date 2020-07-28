@@ -2,7 +2,7 @@ const hints = () => {
     const formula = document.getElementById('formula');
     const problems = document.getElementById('problems');
     const formulaMobileWrapper = document.querySelector('.formula-slider-wrap');
-    const screenWidth = window.innerWidth;
+    const screenWidth = () => window.innerWidth;
 
     const showHideHints = (event, type) => {
         const target = event.target;
@@ -54,27 +54,55 @@ const hints = () => {
         const slides = formulaMobileWrapper.querySelectorAll('.formula-slider__slide');
         const arrowLeft = document.getElementById('formula-arrow_left');
         const arrowRight = document.getElementById('formula-arrow_right');
-        const wrapperWidth = parseFloat(getComputedStyle(formulaMobileWrapper).width);
         const itemWidth = parseFloat(getComputedStyle(slides[0]).width);
 
         let positionLeftItem = 0;
         let transform = 0;
-        const step = (screenWidth >= 768 && screenWidth <= 1024) ? 50 : 100;
-        const slidesArr = [];
+        let step = (screenWidth() >= 768 && screenWidth() <= 1024) ? 50 : 100;
+        let slidesArr = [];
+        let wrapperWidth = parseFloat(getComputedStyle(formulaMobileWrapper).width);
 
-        if (screenWidth < 768) {
+        if (screenWidth() < 768) {
             slides.forEach((item, index) => {
                 slidesArr.push({ item, position: index, transform: 0 });
                 item.style.minWidth = `${wrapperWidth}px`;
             });
         }
 
-        if (screenWidth >= 768 && screenWidth <= 1024) {
+        if (screenWidth() >= 768 && screenWidth() <= 1024) {
             slides.forEach((item, index) => {
                 slidesArr.push({ item, position: index, transform: 0 });
                 item.style.minWidth = `${wrapperWidth / 2}px`;
             });
         }
+
+        const reset = () => {
+            wrapperWidth = parseFloat(getComputedStyle(formulaMobileWrapper).width);
+            positionLeftItem = 0;
+            transform = 0;
+            step = (screenWidth() >= 768 && screenWidth() <= 1024) ? 50 : 100;
+            slidesArr = [];
+
+            if (screenWidth() < 768) {
+                slides.forEach((item, index) => {
+                    slidesArr.push({ item, position: index, transform: 0 });
+                    item.style.minWidth = `${wrapperWidth}px`;
+                });
+            }
+
+            if (screenWidth() >= 768 && screenWidth() <= 1024) {
+                slides.forEach((item, index) => {
+                    slidesArr.push({ item, position: index, transform: 0 });
+                    item.style.minWidth = `${wrapperWidth / 2}px`;
+                });
+            }
+
+            slider.style.transform = 'translateX(0%)';
+            slider.style.transition = 'none';
+            slides.forEach(item => {
+                item.style.transform = 'translateX(0%)';
+            });
+        };
 
         const position = {
             getItemMin: () => {
@@ -156,6 +184,12 @@ const hints = () => {
 
         arrowRight.addEventListener('click', () => {
             transformItem('right');
+        });
+
+        window.addEventListener('resize', () => {
+            if (screenWidth() < 1025) {
+                reset();
+            }
         });
     };
 

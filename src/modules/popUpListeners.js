@@ -3,6 +3,7 @@ const popUpListeners = () => {
     const privacyPolicy = document.querySelector('.popup.popup-privacy');
     const transparencyItem = document.querySelector('.popup-transparency');
     const portfolio = document.querySelector('.popup.popup-portfolio');
+    const consultation = document.querySelector('.popup.popup-consultation');
 
     const portfolioHandler = index => {
         const portfolioTexts = portfolio.querySelectorAll('.popup-portfolio-text');
@@ -177,6 +178,10 @@ const popUpListeners = () => {
             const indexTarget = portfolioArr.indexOf(target);
             portfolioHandler(indexTarget);
         }
+
+        if (target.textContent.trim() === 'Проконсультироваться') {
+            consultation.style.visibility = 'visible';
+        }
     });
 
     repairTypes.addEventListener('click', e => {
@@ -192,6 +197,14 @@ const popUpListeners = () => {
 
         if (target.matches('.popup.popup-privacy') || target.matches('.close.mobile-hide')) {
             privacyPolicy.style.visibility = 'hidden';
+        }
+    });
+
+    consultation.addEventListener('click', e => {
+        const target = e.target;
+
+        if (target.matches('.popup.popup-consultation') || target.matches('.close')) {
+            consultation.style.visibility = 'hidden';
         }
     });
 };
