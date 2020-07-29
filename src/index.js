@@ -10,6 +10,8 @@ import sliderTransparency from './modules/sliderTransparency';
 import tabsDesign from './modules/tabsDesign';
 import sliderReviews from './modules/sliderReviews';
 import tabsProcess from './modules/tabsProcess';
+import accordeon from './modules/accordeon';
+import carousel from './modules/carousel';
 
 toggleTel();
 toggleMenu();
@@ -23,4 +25,6 @@ sliderTransparency();
 tabsDesign();
 sliderReviews();
 tabsProcess();
+accordeon();
+carousel();
 
