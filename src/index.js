@@ -1,3 +1,11 @@
+import "@babel/polyfill";
+import 'nodelist-foreach-polyfill';
+import elementClosest from 'element-closest';
+elementClosest(window);
+import 'formdata-polyfill';
+import 'fetch-polyfill';
+import 'es6-promise';
+
 import toggleTel from './modules/toggleTel';
 import toggleMenu from './modules/toggleMenu';
 import smoothScroll from './modules/smoothScroll';
@@ -12,6 +20,7 @@ import sliderReviews from './modules/sliderReviews';
 import tabsProcess from './modules/tabsProcess';
 import accordeon from './modules/accordeon';
 import carousel from './modules/carousel';
+import getPricesData from './modules/getPricesData';
 
 toggleTel();
 toggleMenu();
@@ -27,4 +36,5 @@ sliderReviews();
 tabsProcess();
 accordeon();
 carousel();
+getPricesData();
 

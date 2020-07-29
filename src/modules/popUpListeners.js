@@ -4,6 +4,7 @@ const popUpListeners = () => {
     const transparencyItem = document.querySelector('.popup-transparency');
     const portfolio = document.querySelector('.popup.popup-portfolio');
     const consultation = document.querySelector('.popup.popup-consultation');
+    const thank = document.querySelector('.popup.popup-thank');
 
     const portfolioHandler = index => {
         const portfolioTexts = portfolio.querySelectorAll('.popup-portfolio-text');
@@ -205,6 +206,14 @@ const popUpListeners = () => {
 
         if (target.matches('.popup.popup-consultation') || target.matches('.close')) {
             consultation.style.visibility = 'hidden';
+        }
+    });
+
+    thank.addEventListener('click', e => {
+        const target = e.target;
+
+        if (target.matches('.popup.popup-thank') || target.matches('.close')) {
+            thank.style.visibility = 'hidden';
         }
     });
 };

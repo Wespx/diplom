@@ -39,7 +39,75 @@ const formsHandler = () => {
         }
     };
 
+    const sendData = body => {
+        return fetch('./server.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/JSON'
+            },
+            body: JSON.stringify(body)
+        });
+    };
+
     maskPhone('[name="phone"]');
+
+    document.body.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const target = e.target;
+        const agreement = target.querySelector('.checkbox__input');
+        const agreementText = target.querySelector('.checkbox__descr');
+        const agreementLabel = target.querySelector('.checkbox__label');
+        const phone = target.querySelector('[name="phone"]');
+        const button = target.querySelector('button');
+        const buttonText = button.textContent;
+        const popUp = document.querySelector('.popup-thank');
+
+        if (phone.value.length !== 18) {
+            phone.style.border = '2px solid red';
+            setTimeout(() => {
+                phone.style.border = '';
+            }, 600);
+            return;
+        }
+
+        if (!agreement.checked) {
+            agreementText.style.color = 'red';
+            agreementLabel.style.borderColor = 'red';
+            setTimeout(() => {
+                agreementText.style.color = '';
+                agreementLabel.style.borderColor = '';
+            }, 600);
+            return;
+        }
+
+        button.textContent = 'Отправляем данные...';
+        const formData = new FormData(target);
+        const body = {};
+
+        for (const val of formData.entries()) {
+            body[val[0]] = val[1];
+        }
+
+        sendData(body)
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error('Status: not 200');
+                } else {
+                    return response;
+                }
+            })
+            .then(response => {
+                button.textContent = buttonText;
+                popUp.style.visibility = 'visible';
+                target.reset();
+            })
+            .catch(error => {
+                console.error(error);
+                button.textContent = 'Произошла ошибка';
+                setTimeout(() =>  button.textContent = buttonText, 1500);
+            });
+    });
 };
 
 export default formsHandler;

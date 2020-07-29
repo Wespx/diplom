@@ -107,9 +107,12 @@ const carousel = () => {
         }
     });
 
-    window.addEventListener('resize', reset);
+    window.addEventListener('resize', () => {
+        reset();
+        reset();
+    });
 
-    setTimeout(startCarousel, 2000);
+    startCarousel(), 2000;
 };
 
 export default carousel;

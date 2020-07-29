@@ -22,7 +22,7 @@ const hints = () => {
             target.style.color = '#fff';
 
 
-            if (distanceToTop < 220 && screenWidth > 1024) {
+            if (distanceToTop < 220 && screenWidth() > 1024) {
                 hint.classList.add(`${type}-item-popup-bottom`);
                 hint.style.bottom = '-200px';
                 const distanceBetween = hint.offsetTop - icon.offsetTop - icon.offsetHeight;
