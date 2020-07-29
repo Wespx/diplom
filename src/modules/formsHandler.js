@@ -39,6 +39,29 @@ const formsHandler = () => {
         }
     };
 
+    const validText = selector => {
+        const elems = document.querySelectorAll(selector);
+
+        elems.forEach(elem => {
+            elem.addEventListener('input', e => {
+                const target = e.target;
+                const regExp = /[^а-яА-ЯёЁ\s]+$/g;
+                target.value = target.value.replace(regExp, '');
+
+                if (regExp.test(e.data) && !!e.data) {
+                    target.style.border = 'solid red';
+                } else if (target.value.length > 20) {
+                    target.value = target.value.substring(0, 20);
+                    target.style.border = 'solid red';
+                } else {
+                    target.style.border = '';
+                }
+            });
+
+            elem.setAttribute('autocomplete', 'off');
+        });
+    };
+
     const sendData = body => {
         return fetch('./server.php', {
             method: 'POST',
@@ -50,6 +73,7 @@ const formsHandler = () => {
     };
 
     maskPhone('[name="phone"]');
+    validText('[name="name"');
 
     document.body.addEventListener('submit', e => {
         e.preventDefault();
@@ -59,6 +83,7 @@ const formsHandler = () => {
         const agreementText = target.querySelector('.checkbox__descr');
         const agreementLabel = target.querySelector('.checkbox__label');
         const phone = target.querySelector('[name="phone"]');
+        const name = target.querySelector('[name="name"');
         const button = target.querySelector('button');
         const buttonText = button.textContent;
         const popUp = document.querySelector('.popup-thank');
@@ -67,6 +92,14 @@ const formsHandler = () => {
             phone.style.border = '2px solid red';
             setTimeout(() => {
                 phone.style.border = '';
+            }, 600);
+            return;
+        }
+
+        if (name && name.value.length < 2) {
+            name.style.border = '2px solid red';
+            setTimeout(() => {
+                name.style.border = '';
             }, 600);
             return;
         }

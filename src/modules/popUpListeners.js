@@ -188,7 +188,7 @@ const popUpListeners = () => {
     repairTypes.addEventListener('click', e => {
         const target = e.target;
 
-        if (target.matches('.popup.popup-repair-types') || target.matches('.close.mobile-hide')) {
+        if (target.matches('.popup.popup-repair-types') || target.matches('.close')) {
             repairTypes.style.visibility = 'hidden';
         }
     });
@@ -196,7 +196,7 @@ const popUpListeners = () => {
     privacyPolicy.addEventListener('click', e => {
         const target = e.target;
 
-        if (target.matches('.popup.popup-privacy') || target.matches('.close.mobile-hide')) {
+        if (target.matches('.popup.popup-privacy') || target.matches('.close')) {
             privacyPolicy.style.visibility = 'hidden';
         }
     });
